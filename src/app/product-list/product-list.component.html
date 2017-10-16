@@ -1,0 +1,32 @@
+
+
+
+<span>{{ tasks | json}}</span>
+<span>{{ tasks[0]}}</span>
+<div class="row" >
+  <div *ngFor="let task of tasks" class="col-xs-6">
+    <img class="img-responsive" src="{{ task[0].img }}" alt="{{ task.img }}">
+    <h3>Product Title {{ task[0].title }}</h3>
+    <h4>Price: {{ task[0].price }}</h4>
+    <button type="button" (click)="onEdit(task[0].title)"class="btn btn-warning">Edit Item</button>
+    <button type="button" (click)="onDelete(task[0].title)" class="btn btn-danger">Delete Item</button>
+
+  </div>
+
+  <div class="col-xs-6">
+    <img class="img-responsive" src="https://static.pexels.com/photos/305268/pexels-photo-305268.jpeg" alt="">
+    <h3>Product Title</h3>
+    <h4>Price</h4>
+    <button type="button" [routerLink]="['edit']" class="btn btn-warning">Edit Item</button>
+    <button type="button" class="btn btn-danger">Delete Item</button>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-xs-6">
+    <img class="img-responsive" src="https://static.pexels.com/photos/302902/pexels-photo-302902.jpeg" alt="">
+    <h3>Product Title</h3>
+    <h4>Price</h4>
+    <a type="button" [routerLink]="['edit']" class="btn btn-warning">Edit Item</a>
+    <button type="button" class="btn btn-danger">Delete Item</button>
+  </div>
+</div>
+  <router-outlet></router-outlet>

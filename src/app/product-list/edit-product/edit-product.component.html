@@ -1,0 +1,32 @@
+<div class="contianer">
+  <h2>Edit Product</h2>
+  <div class="col-xs-6">
+     {{ product | json }} 
+     {{ tasks | json }}
+    <form (submit)="onUpdate(id)" #heroForm="ngForm">
+      <div class="form-group form-inline">
+        Title:
+        <input type="text" name="title" required minlength="4" [(ngModel)]="product.title" #newTitle='ngModel'>
+        <span *ngIf="newTitle.errors && (newTitle.dirty || newTitle.touched)" class="alert">
+          <span class="warn" [hidden]="!newTitle.errors.required">Title is required.</span>
+          <span class="warn" [hidden]="!newTitle.errors.minlength">Title must be at least 4 characters long.</span>
+        </span>
+      </div>
+      <br>
+      <div class="form-group form-inline">
+        Price:
+        <input type="text" name="price" required [(ngModel)]="product.price" #price='ngModel'>
+        <span *ngIf="price.errors && (price.dirty || price.touched)" class="alert">
+          <span class="warn" [hidden]="!price.errors.required">price is required.</span>
+        </span>
+      </div>
+      <br>
+      <div class="form-group form-inline">
+        Image Url:
+        <input type="text" name="img" [(ngModel)]="product.img" #image='ngModel'>
+      </div>
+      <a type="Delete" (click)="onDelete(id)" class="btn btn-danger">Delete</a>
+      <input type="submit" [disabled]="!heroForm.form.valid" class="btn btn-primary">
+    </form>
+  <router-outlet></router-outlet>
+</div>
